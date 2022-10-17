@@ -9,13 +9,13 @@ If you use (and extend) this code, please cite our work
   
 ## Abstract
 
-We have implemented analytic expression for neutrino oscillation probabilities up to system with $3+4$ neutrino flavors in an arbitrary matter potential based on the [article](https://arxiv.org/abs/2210.xxxxx). It is built such that the user can easily specify the masses, mixing angles and phases related to neutrinos, nonunitary parameters, extend the Standard Model (SM) matter potential with NonStandard neutrino Interaction (NSI) parameters and specify matter density profile in layers of constant matter densities. Example applications to nonunitary, NSI, quasi-Dirac neutrino scenarios are given. For the Earth-crossing neutrinos, a simplified 4-layer PREM model is used.
+We have implemented analytic expression for neutrino oscillation probabilities up to system with 3+4 neutrino flavors in an arbitrary matter potential based on the [article](https://arxiv.org/abs/2210.xxxxx). It is built such that the user can easily specify the masses, mixing angles and phases related to neutrinos, nonunitary parameters, extend the Standard Model (SM) matter potential with NonStandard neutrino Interaction (NSI) parameters and specify matter density profile in layers of constant matter densities. Example applications to nonunitary, NSI, quasi-Dirac neutrino scenarios are given. For the Earth-crossing neutrinos, a simplified 4-layer PREM model is used.
 
 
 ## Changelog
 
 **October 16, 2022** \
-In this initial release, we have implemented up to system with $3+4$ neutrino flavors. For the Earth matter density profile, we have implemented a simplified 4-layer PREM model. 
+In this initial release, we have implemented up to system with 3+4 neutrino flavors. For the Earth matter density profile, we have implemented a simplified 4-layer PREM model. 
 
 
 
@@ -26,7 +26,7 @@ The two basic packages are $\texttt{inputs.py}$ and $\texttt{probability.py}$:
 from nuprobe.nuinputs import NuSystem, create_U_PMNS, create_U_NEW
 from nuprobe.probability import nuprobe
 ```
-In the above, we have imported $\texttt{NuSystem}$ that allows us to specify the number of neutrinos, the mixing angles and phases, nonunitary and NSI parameters. The function $\texttt{create\_U\_PMNS}$ will create the "PMNS" matrix with the standard three neutrinos angle and phases while the function $\texttt{create\_U\_NEW}$ will create matrix involving only the new angles and phases. The function $\texttt{nuprobe}$ is to calculate the neutrino oscillation probability. We will explain these in more details shortly.
+In the above, we have imported $\texttt{NuSystem}$ that allows us to specify the number of neutrinos, the mixing angles and phases, nonunitary and NSI parameters. The function `create_U_PMNS` will create the PMNS matrix with the standard three neutrinos angle and phases while the function `create_U_NEW` will create matrix involving only the new angles and phases. The function $\texttt{nuprobe}$ is to calculate the neutrino oscillation probability. We will explain these in more details shortly.
 
 First of all, let us specify the numbers of neutrino flavor, say 4:
 ```
@@ -52,16 +52,16 @@ U0 = create_U_PMNS(nu_sys.theta, nu_sys.delta)
 UNP = create_U_NEW(nu_sys.theta, nu_sys.delta)
 U = UNP @ U0
 ```
-For a system with $d$ neutrino flavors, the function `create_U_PMNS` $\texttt{create\_U\_PMNS}$ creates a $d \times d$ matrix with $3 \times 3$ submatrix as the standard three-flavor mixing (PMNS) matrix. The function $\texttt{create\_U\_NEW}$ will create $d \times d$ matrix involving only new angles and phases. The full rotation matrix is obtained by a matrix multiplication between the two. 
+For a system with $d$ neutrino flavors, the function `create_U_PMNS` creates a $d \times d$ matrix with $3 \times 3$ submatrix as the standard three-flavor mixing (PMNS) matrix. The function `create_U_NEW` will create $d \times d$ matrix involving only new angles and phases. The full rotation matrix is obtained by a matrix multiplication between the two. 
 
-To calculate the neutrino oscillation probability, we will call the function $\texttt{nuprobe(a, b, L, E, mass, U, antinu, V\_NSI)}$ with the following input parameters:
+To calculate the neutrino oscillation probability, we will call the function `nuprobe(a, b, L, E, mass, U, antinu, V_NSI)` with the following input parameters:
 - $\texttt{a, b}$ (int): transition of a neutrino from flavor a to b with $(1, 2, 3, 4, ..., d) = (e, \mu, \tau, s_1, ..., s_{d-3})$
 - $\texttt{L}$ [km]: the distance the neutrino has traveled
 - $\texttt{E}$ [GeV]: energy of the neutrino
 - $\texttt{mass}$ [eV]: $d$ vector of neutrino masses
 - $\texttt{U}$ [dimensionless]: $d \times d$ mixing matrix
 - $\texttt{antinu}$ (bool): if true, anti neutrino will be considered (default if false)
-- $\texttt{V\_NSI}$ [dimensionless]: $d \times d$ Hermitian matrix defined with respect to the matter potential of charge current as in [arXiv:2106.07755](https://arxiv.org/abs/2106.07755).
+- `V_NSI` [dimensionless]: $d \times d$ Hermitian matrix defined with respect to the matter potential of charge current as in [arXiv:2106.07755](https://arxiv.org/abs/2106.07755).
  
 For instance, to calculate the probability of $\bar\nu_\mu \to \bar\nu_e$ for neutrino of energy $E = 2$ GeV at a distance $L = 1000$ km, we write
 ```
@@ -95,10 +95,11 @@ LL = np.array([0, 0.1, 0.45, 0.81, 1.19, 1.55, 1.9, 2])*R0
 # Matter densities in [g/cm^3]
 rho_LL = [3.6, 5, 10, 13, 10, 5, 3.6] 
 ```
-If $\texttt{const\_matter =  True}$, a constant matter density (g/cm$^3$) specified in $\texttt{rho\_const = 3}$ will be used. $\texttt{const\_matter =  False}$, the matter density profile can be specified by a $D+1$ vector of layers in km and a $D$ vector of matter densities in g/cm$^3$. The default is a four-layer simplified PREM model for neutrino passing through the Earth core.
+If `const_matter =  True`, a constant matter density (g/cm<sup>3</sup>) specified in `rho_const = 3` will be used. If `const_matter =  False`, the matter density profile can be specified by a $D+1$ vector of layers in km and a $D$ vector of matter densities in g/cm<sup>3</sup>. The default is a four-layer simplified PREM model for neutrino passing through the Earth core.
 
 Examples of nonunitary, NSI and quasi-Dirac neutrino scenarios that are used to produced the figures in the [article](https://arxiv.org/abs/2210.xxxxx) are contained in the $\texttt{examples}$ folder.
 
 
 ## Contact
-To report bugs, to give suggestions for improvements, please write to sheng.fong@ufabc.edu.br.
+To report bugs, to give suggestions for improvements, please write to me sheng [dot] fong [at] ufabc [dot] edu [dot] br.
+
