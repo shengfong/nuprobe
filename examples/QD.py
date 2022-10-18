@@ -64,9 +64,9 @@ L = 6371*2
 
 
 for i in range(num):
-    PE.append(nuprobe(2, 1, L, EE[i], mass0, UPMNS, antinu=False, V_NSI=None))
-    PEa.append(nuprobe(2, 1, L, EE[i], massQD, U, antinu=False, V_NSI=None))
-    PEb.append(nuprobe(2, 1, L, EE[i], massQD2, U, antinu=False, V_NSI=None))
+    PE.append(nuprobe(2, 1, L, EE[i], mass0, UPMNS, antinu=False, const_matter=False, V_NSI=None))
+    PEa.append(nuprobe(2, 1, L, EE[i], massQD, U, antinu=False, const_matter=False, V_NSI=None))
+    PEb.append(nuprobe(2, 1, L, EE[i], massQD2, U, antinu=False, const_matter=False, V_NSI=None))
 
 
 plt.rc('text', usetex=True)

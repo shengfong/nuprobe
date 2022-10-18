@@ -45,9 +45,9 @@ EE = np.logspace(0, 1.4771, num)
 L = 6371*2
 
 for i in range(num):
-    PE.append(nuprobe(2, 1, L, EE[i], nu_sys.mass, UPMNS, antinu=False, V_NSI=None))
-    PE1.append(nuprobe(2, 1, L, EE[i], nu_sys.mass, U1, antinu=False, V_NSI=None))
-    PE2.append(nuprobe(2, 1, L, EE[i], nu_sys.mass, U2, antinu=False, V_NSI=None))
+    PE.append(nuprobe(2, 1, L, EE[i], nu_sys.mass, UPMNS, antinu=False, const_matter=False, V_NSI=None))
+    PE1.append(nuprobe(2, 1, L, EE[i], nu_sys.mass, U1, antinu=False, const_matter=False, V_NSI=None))
+    PE2.append(nuprobe(2, 1, L, EE[i], nu_sys.mass, U2, antinu=False, const_matter=False, V_NSI=None))
 
 # Plotting the results
 plt.rc('text', usetex=True)

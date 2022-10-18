@@ -1,12 +1,13 @@
 import numpy as np
 
-# Constant matter density
-# If true, the constant matter density will be used
-# If false, matter density profile will be used
-const_matter = True
-
 # Constant matter density [g/cm^3]
 rho_const = 3
+
+# Average number of electron per nucleon [dimensionless]
+Y_e = 0.5
+
+# Average number of neutron per electron [dimensionless]
+Y_n = 1.06
 
 
 ####### Matter density profile #######
