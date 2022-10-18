@@ -9,7 +9,6 @@ Y_e = 0.5
 # Average number of neutron per electron [dimensionless]
 Y_n = 1.06
 
-
 ####### Matter density profile #######
 # Earth radius [km]
 R0 = 6371 

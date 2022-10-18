@@ -6,6 +6,7 @@ from nuprobe.params import CONV_L, CONV_matter, rtol
 from nuprobe.degeneracy import calc_unique_values
 from nuprobe.matter import rho_const, Y_e, Y_n, rho_LL, LL
 
+
 def eigenvalues(H):
     """ Calculate distinct eigenvalues from the Hamiltonian H 
     param:
@@ -330,6 +331,7 @@ def SS(b, a, L, E, H, U):
     return S
 
 
+
 def nuprobe(a, b, L, E, mass, UU, antinu=False, const_matter=True, V_NSI=None):
     """ Calculate the oscillation probability of neutrino of flavor a to b
     params:
@@ -400,7 +402,7 @@ def nuprobe(a, b, L, E, mass, UU, antinu=False, const_matter=True, V_NSI=None):
     return Prob
 
 
-def V_matter(d, rho, Ye, Yn, V_NSI=None):
+def V_matter(d, rho, Ye=Y_e, Yn=Y_n, V_NSI=None):
     """ Calculate the d x d matter potential [eV^2/GeV]
     params:
     - d (int): number of neutrino flavors

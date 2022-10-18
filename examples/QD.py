@@ -62,12 +62,10 @@ num = 1000
 EE = np.logspace(0, 1.4771, num)
 L = 6371*2
 
-
 for i in range(num):
     PE.append(nuprobe(2, 1, L, EE[i], mass0, UPMNS, antinu=False, const_matter=False, V_NSI=None))
     PEa.append(nuprobe(2, 1, L, EE[i], massQD, U, antinu=False, const_matter=False, V_NSI=None))
     PEb.append(nuprobe(2, 1, L, EE[i], massQD2, U, antinu=False, const_matter=False, V_NSI=None))
-
 
 plt.rc('text', usetex=True)
 plt.rcParams['text.latex.preamble']=r"\usepackage{amsmath,slashed}"

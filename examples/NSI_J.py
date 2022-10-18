@@ -33,7 +33,7 @@ nu_sys.set_NSI(1, 2, 0)
 NSIc = nu_sys.NSI.copy()
 
 # Calculate the matter potential matrix
-# The arguments of V_matter(dimension, matter density[g/cm^3], NSI potential parameters)
+# The arguments of V_matter(dimension, matter density[g/cm^3], NSI parameters)
 Va = V_matter(3, 3, V_NSI = NSIa)
 Vb = V_matter(3, 3, V_NSI = NSIb)
 Vc = V_matter(3, 3, V_NSI = NSIc)
