@@ -32,6 +32,6 @@ U = UNP @ U0
 
 L = 1000
 E = 2
-P = nuprobe(2, 1, L, E, nu_sys.mass, U, antinu=True, V_NSI=None)
+P = nuprobe(2, 1, L, E, nu_sys.mass, U, antinu=True, const_matter=True, V_NSI=None)
 print('P =', P)
 

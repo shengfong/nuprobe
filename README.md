@@ -17,11 +17,16 @@ We have implemented analytic expression for neutrino oscillation probabilities u
 **October 16, 2022** \
 In this initial release, we have implemented up to system with 3+4 neutrino flavors. For the Earth matter density profile, we have implemented a simplified 4-layer PREM model. 
 
-
+## Installation 
+To install from the github repository:
+```
+git clone https://github.com/shengfong/nuprobe.git
+cd nuprobe
+pip install -e .
+```
 
 ## Usage
 The two basic packages are $\texttt{inputs.py}$ and $\texttt{probability.py}$:
-
 ```
 from nuprobe.nuinputs import NuSystem, create_U_PMNS, create_U_NEW
 from nuprobe.probability import nuprobe
@@ -54,35 +59,39 @@ U = UNP @ U0
 ```
 For a system with $d$ neutrino flavors, the function `create_U_PMNS` creates a $d \times d$ matrix with $3 \times 3$ submatrix as the standard three-flavor mixing (PMNS) matrix. The function `create_U_NEW` will create $d \times d$ matrix involving only new angles and phases. The full rotation matrix is obtained by a matrix multiplication between the two. 
 
-To calculate the neutrino oscillation probability, we will call the function `nuprobe(a, b, L, E, mass, U, antinu, V_NSI)` with the following input parameters:
+To calculate the neutrino oscillation probability, we will call the function `nuprobe(a, b, L, E, mass, U, antinu, const_matter, V_NSI)` with the following input parameters:
+
 - $\texttt{a, b}$ (int): transition of a neutrino from flavor a to b with $(1, 2, 3, 4, ..., d) = (e, \mu, \tau, s_1, ..., s_{d-3})$
 - $\texttt{L}$ [km]: the distance the neutrino has traveled
 - $\texttt{E}$ [GeV]: energy of the neutrino
 - $\texttt{mass}$ [eV]: $d$ vector of neutrino masses
 - $\texttt{U}$ [dimensionless]: $d \times d$ mixing matrix
 - $\texttt{antinu}$ (bool): if true, anti neutrino will be considered (default if false)
+- `const_matter` (bool): if true, constant matter potential will be considered (default is true)
 - `V_NSI` [dimensionless]: $d \times d$ Hermitian matrix defined with respect to the matter potential of charge current as in [arXiv:2106.07755](https://arxiv.org/abs/2106.07755).
  
 For instance, to calculate the probability of $\bar\nu_\mu \to \bar\nu_e$ for neutrino of energy $E = 2$ GeV at a distance $L = 1000$ km, we write
 ```
 L = 1000
 E = 2
-P = nuprobe(2, 1, L, E, nu_sys.mass, U, antinu=True, V_NSI=None)
+P = nuprobe(2, 1, L, E, nu_sys.mass, U, antinu=True, const_matter=True, V_NSI=None)
 print('P =', P)
 ```
 Running this code, we obtain
 ```
 P = 0.04770409710452118
 ```
-By default, the SM density matter potential is used. We can further specify to use constant or varying matter density in $\texttt{matter.py}$:
-```
-# Constant matter density
-# If true, the constant matter density will be used
-# If false, matter density profile will be used
-const_matter = True
 
+By default, the SM density matter potential with constant density is used. The relevant parameters are specified in $\texttt{matter.py}$:
+```
 # Constant matter density [g/cm^3]
 rho_const = 3
+
+# Average number of electron per nucleon [dimensionless]
+Y_e = 0.5
+
+# Average number of neutron per electron [dimensionless]
+Y_n = 1.06
 
 
 ####### Matter density profile #######
@@ -101,5 +110,6 @@ Examples of nonunitary, NSI and quasi-Dirac neutrino scenarios that are used to 
 
 
 ## Contact
-To report bugs, to give suggestions for improvements, please write to me sheng [dot] fong [at] ufabc [dot] edu [dot] br.
+To report bugs, to give suggestions for improvements, please write to sheng [dot] fong [at] ufabc [dot] edu [dot] br.
+
 

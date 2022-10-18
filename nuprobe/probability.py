@@ -4,7 +4,8 @@ import sys
 
 from nuprobe.params import CONV_L, CONV_matter, rtol
 from nuprobe.degeneracy import calc_unique_values
-from nuprobe.matter import const_matter, rho_const, rho_LL, LL
+from nuprobe.matter import rho_const, Y_e, Y_n, rho_LL, LL
+
 
 def eigenvalues(H):
     """ Calculate distinct eigenvalues from the Hamiltonian H 
@@ -330,7 +331,8 @@ def SS(b, a, L, E, H, U):
     return S
 
 
-def nuprobe(a, b, L, E, mass, UU, antinu=False, V_NSI=None):
+
+def nuprobe(a, b, L, E, mass, UU, antinu=False, const_matter=True, V_NSI=None):
     """ Calculate the oscillation probability of neutrino of flavor a to b
     params:
     - a, b (int): transition of a neutrino from flavor a to b
@@ -340,6 +342,7 @@ def nuprobe(a, b, L, E, mass, UU, antinu=False, V_NSI=None):
     - mass [eV]: d vector of neutrino masses
     - U [dimensionless]: d x d mixing matrix
     - antinu (bool): if true, anti neutrino will be considered (default if false)
+    - const_potential (bool): if true, constant matter potential will be considered (default is true)
     - V_NSI [dimensionless]: d x d Hermitian matrix defined with respect to the matter potential of charge current (arXiv:2106.07755)
     """ 
 
@@ -354,7 +357,7 @@ def nuprobe(a, b, L, E, mass, UU, antinu=False, V_NSI=None):
         V_NSI = np.zeros((d, d))
 
     if const_matter:
-        V = V_matter(d, rho_const, 0.5, 1.06, V_NSI)
+        V = V_matter(d, rho_const, Y_e, Y_n, V_NSI)
 
         if antinu: 
             UU = np.conjugate(UU)
@@ -368,7 +371,7 @@ def nuprobe(a, b, L, E, mass, UU, antinu=False, V_NSI=None):
         rhol = rho_LL
 
         for i in range(dl):
-            V = V_matter(d, rhol[i], 0.5, 1.06, V_NSI)
+            V = V_matter(d, rhol[i], Y_e, Y_n, V_NSI)
 
             if antinu: 
                 UU = np.conjugate(UU)
@@ -399,7 +402,7 @@ def nuprobe(a, b, L, E, mass, UU, antinu=False, V_NSI=None):
     return Prob
 
 
-def V_matter(d, rho, Ye=0.5, Yn=1.06, V_NSI=None):
+def V_matter(d, rho, Ye=Y_e, Yn=Y_n, V_NSI=None):
     """ Calculate the d x d matter potential [eV^2/GeV]
     params:
     - d (int): number of neutrino flavors
