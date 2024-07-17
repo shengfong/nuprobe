@@ -4,12 +4,13 @@ If you use (and extend) this code, please cite our work
 
 - **Analytic Neutrino Oscillation Probabilities**\
   Chee Sheng Fong\
-  https://arxiv.org/abs/2210.xxxxx
+  https://arxiv.org/abs/2210.09436 \
+  [SciPost Phys. **15** (2023) 1, 013](https://scipost.org/10.21468/SciPostPhys.15.1.013)
   
   
 ## Abstract
 
-We have implemented analytic expression for neutrino oscillation probabilities up to system with 3+4 neutrino flavors in an arbitrary matter potential based on the [article](https://arxiv.org/abs/2210.xxxxx). It is built such that the user can easily specify the masses, mixing angles and phases related to neutrinos, nonunitary parameters, extend the Standard Model (SM) matter potential with NonStandard neutrino Interaction (NSI) parameters and specify matter density profile in layers of constant matter densities. Example applications to nonunitary, NSI, quasi-Dirac neutrino scenarios are given. For the Earth-crossing neutrinos, a simplified 4-layer PREM model is used.
+We have implemented analytic expression for neutrino oscillation probabilities up to system with 3+4 neutrino flavors in an arbitrary matter potential based on the [article](https://arxiv.org/abs/2210.09436). It is built such that the user can easily specify the masses, mixing angles and phases related to neutrinos, nonunitary parameters, extend the Standard Model (SM) matter potential with NonStandard neutrino Interaction (NSI) parameters and specify matter density profile in layers of constant matter densities. Example applications to nonunitary, NSI, quasi-Dirac neutrino scenarios are given. For the Earth-crossing neutrinos, a simplified 4-layer PREM model is used.
 
 
 ## Changelog
@@ -106,7 +107,7 @@ rho_LL = [3.6, 5, 10, 13, 10, 5, 3.6]
 ```
 If `const_matter =  True`, a constant matter density (g/cm<sup>3</sup>) specified in `rho_const = 3` will be used. If `const_matter =  False`, the matter density profile can be specified by a $D+1$ vector of layers in km and a $D$ vector of matter densities in g/cm<sup>3</sup>. The default is a four-layer simplified PREM model for neutrino passing through the Earth core.
 
-Examples of nonunitary, NSI and quasi-Dirac neutrino scenarios that are used to produced the figures in the [article](https://arxiv.org/abs/2210.xxxxx) are contained in the $\texttt{examples}$ folder.
+Examples of nonunitary, NSI and quasi-Dirac neutrino scenarios that are used to produced the figures in the [article](https://arxiv.org/abs/2210.09436) are contained in the $\texttt{examples}$ folder.
 
 
 ## Contact
